@@ -3,6 +3,7 @@ package com.devstart.protoenergy
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.lifecycleScope
 import com.devstart.protoenergy.network.ApiResponse
 import com.devstart.protoenergy.network.Failure
 import com.devstart.protoenergy.network.Success
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fetchData() {
-        GlobalScope.launch {
+        lifecycleScope.launch {
             viewModel.fetchOrders().collect {
                 when(it) {
                     is Failure -> {
