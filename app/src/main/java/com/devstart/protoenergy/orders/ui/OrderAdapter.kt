@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devstart.protoenergy.databinding.OrderItemBinding
 import com.devstart.protoenergy.orders.model.Order
+import com.devstart.protoenergy.util.DateConverter
 
 class OrderAdapter: ListAdapter<Order, OrderAdapter.OrderViewHolder>(OrderDiffUtil) {
 
@@ -14,7 +15,7 @@ class OrderAdapter: ListAdapter<Order, OrderAdapter.OrderViewHolder>(OrderDiffUt
         fun bind(item: Order) {
             binding.name.text = item.customerName
             binding.location.text = item.deliveryPointName
-            binding.date.text = item.dateCreated
+            binding.date.text = DateConverter.convertData(item.dateCreated).toString()
             binding.status.text = item.status
         }
     }
