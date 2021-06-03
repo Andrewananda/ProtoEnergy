@@ -3,12 +3,14 @@ package com.devstart.protoenergy
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.lifecycle.Observer
 import com.devstart.protoenergy.network.ApiResponse
 import com.devstart.protoenergy.network.Failure
 import com.devstart.protoenergy.network.Success
 import com.devstart.protoenergy.orders.viewModel.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -21,16 +23,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel.getOrders().observe(this, Observer { response ->
-            when(response) {
-                is Failure -> {
-                    logFailiure(response.throwable)
-                }
-                is Success<*> -> {
-                    logSuccess(response)
+        fetchData()
+    }
+
+    private fun fetchData() {
+        GlobalScope.launch {
+            viewModel.fetchOrders().collect {
+                when(it) {
+                    is Failure -> {
+                        logFailiure(it.throwable)
+                    }
+                    is Success<*> -> {
+                        logSuccess(it)
+                    }
                 }
             }
-        })
+        }
     }
 
     private fun logSuccess(response: ApiResponse) {
