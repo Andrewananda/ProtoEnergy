@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.devstart.protoenergy.R
+import com.devstart.protoenergy.databinding.FragmentOrdersBinding
 import com.devstart.protoenergy.network.ApiResponse
 import com.devstart.protoenergy.network.Failure
 import com.devstart.protoenergy.network.Success
@@ -21,13 +23,15 @@ class OrdersFragment : Fragment() {
     @Inject
     lateinit var viewModel: OrderViewModel
 
+    private lateinit var binding: FragmentOrdersBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         fetchData()
-        return inflater.inflate(R.layout.fragment_orders, container, false)
+        binding = DataBindingUtil.inflate(layoutInflater,R.layout.fragment_orders, container, false)
+        return binding.root
     }
 
     private fun fetchData() {
