@@ -13,6 +13,7 @@ import com.devstart.protoenergy.databinding.FragmentOrdersBinding
 import com.devstart.protoenergy.network.ApiResponse
 import com.devstart.protoenergy.network.Failure
 import com.devstart.protoenergy.network.Success
+import com.devstart.protoenergy.orders.model.Order
 import com.devstart.protoenergy.orders.viewModel.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -24,13 +25,15 @@ class OrdersFragment : Fragment() {
     lateinit var viewModel: OrderViewModel
 
     private lateinit var binding: FragmentOrdersBinding
+    private lateinit var orderAdapter: OrderAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        fetchData()
         binding = DataBindingUtil.inflate(layoutInflater,R.layout.fragment_orders, container, false)
+        fetchData()
+        orderAdapter = OrderAdapter()
+        binding.recyclerview.adapter = orderAdapter
         return binding.root
     }
 
@@ -42,15 +45,15 @@ class OrdersFragment : Fragment() {
                         logFailiure(res.throwable)
                     }
                     is Success<*> -> {
-                        logSuccess(res)
+                        bindView(res.data as List<Order>)
                     }
                 }
             }
         }
     }
 
-    private fun logSuccess(response: ApiResponse) {
-        Log.i("Success", response.toString())
+    private fun bindView(response: List<Order>) {
+        orderAdapter.submitList(response)
     }
 
     private fun logFailiure(failure: Throwable) {
