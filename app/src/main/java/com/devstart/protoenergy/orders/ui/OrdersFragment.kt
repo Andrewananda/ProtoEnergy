@@ -17,7 +17,12 @@ import com.devstart.protoenergy.network.Failure
 import com.devstart.protoenergy.network.Success
 import com.devstart.protoenergy.orders.model.Order
 import com.devstart.protoenergy.orders.viewModel.OrderViewModel
+import com.devstart.protoenergy.util.hide
+import com.devstart.protoenergy.util.show
+import com.devstart.protoenergy.util.snack
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_orders.*
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
@@ -38,7 +43,8 @@ class OrdersFragment : Fragment() {
         if(isConnected) {
            fetchData()
         }else {
-            Log.e("INTERNETCONNECTION", "Kindly check your internet Connection")
+            progressBar.hide()
+            view?.snack("Check Your internet connectivity")
         }
         orderAdapter = OrderAdapter(OrderAdapter.OnClickListener {
             navigateToOrderDetail(it)
@@ -88,18 +94,10 @@ class OrdersFragment : Fragment() {
     }
 
     private fun bindView(response: List<Order>) {
-        hideProgressBar()
+        progressBar.hide()
         orderAdapter.submitList(response)
         orderAdapter.modifyList(response)
-        showData()
-    }
-
-    private fun showData() {
-        binding.recyclerview.visibility = View.VISIBLE
-    }
-
-    private fun hideProgressBar() {
-        binding.progressBar.visibility = View.GONE
+        recyclerview.show()
     }
 
     private fun logFailiure(failure: Throwable) {
