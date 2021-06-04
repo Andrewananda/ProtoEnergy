@@ -10,7 +10,7 @@ import com.devstart.protoenergy.orders.model.Order
 import com.devstart.protoenergy.util.DateConverter
 import java.util.*
 
-class OrderAdapter(val clickListener: OnClickListener): ListAdapter<Order, OrderAdapter.OrderViewHolder>(OrderDiffUtil) {
+class OrderAdapter(private val clickListener: OnClickListener): ListAdapter<Order, OrderAdapter.OrderViewHolder>(OrderDiffUtil) {
 
     private var unfilteredList = listOf<Order>()
     inner class OrderViewHolder(private val binding: OrderItemBinding): RecyclerView.ViewHolder(binding.root) {
@@ -42,7 +42,6 @@ class OrderAdapter(val clickListener: OnClickListener): ListAdapter<Order, Order
     fun filter(query: CharSequence?) {
         val list = mutableListOf<Order>()
 
-        // perform the data filtering
         if(!query.isNullOrEmpty()) {
             list.addAll(unfilteredList.filter {
                 it.status.toLowerCase(Locale.getDefault()).contains(query.toString().toLowerCase(Locale.getDefault())) ||
