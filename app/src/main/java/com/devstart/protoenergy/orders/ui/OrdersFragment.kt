@@ -2,10 +2,10 @@ package com.devstart.protoenergy.orders.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.devstart.protoenergy.R
@@ -37,6 +37,31 @@ class OrdersFragment : Fragment() {
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+         inflater.inflate(R.menu.menu, menu)
+        val search = menu?.findItem(R.id.search_bar)
+        val searchView = search?.actionView as SearchView
+        searchView.queryHint = "Search"
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                orderAdapter.filter(p0)
+                return true
+            }
+
+        })
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
     private fun fetchData() {
         lifecycleScope.launchWhenCreated {
             viewModel.fetchOrders().collect { res ->
@@ -54,6 +79,7 @@ class OrdersFragment : Fragment() {
 
     private fun bindView(response: List<Order>) {
         orderAdapter.submitList(response)
+        orderAdapter.modifyList(response)
     }
 
     private fun logFailiure(failure: Throwable) {
