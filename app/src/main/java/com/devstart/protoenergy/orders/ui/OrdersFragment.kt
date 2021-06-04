@@ -101,6 +101,8 @@ class OrdersFragment : Fragment() {
     }
 
     private fun logFailiure(failure: Throwable) {
+        progressBar.hide()
+        view?.snack("An error occurred while trying to fetch Orders")
         Log.i("Failure", failure.localizedMessage)
     }
 
