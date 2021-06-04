@@ -17,6 +17,7 @@
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/detailedDescription"
         style="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,13 +43,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:textColor="@color/colorPrimary"
         android:text="Batch Number :"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialTextView8" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/materialTextView7"
-        style="@style/TextAppearance.AppCompat.Large"
+        style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,6 +62,7 @@
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/dark_gray"
         android:text="@{order.salesAreaName}"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailedDescription" />
@@ -97,16 +100,6 @@
         android:text="@{order.status}"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialTextView7" />
-
-    <ImageView
-        android:id="@+id/image_delivery_status"
-        android:layout_width="20dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_circle_ongoing"
-        app:layout_constraintBottom_toBottomOf="@+id/materialTextView10"
-        app:layout_constraintStart_toEndOf="@+id/materialTextView10"
-        app:layout_constraintTop_toTopOf="@+id/materialTextView10" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
