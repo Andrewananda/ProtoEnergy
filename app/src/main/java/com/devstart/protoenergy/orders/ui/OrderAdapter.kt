@@ -10,7 +10,7 @@ import com.devstart.protoenergy.orders.model.Order
 import com.devstart.protoenergy.util.DateConverter
 import java.util.*
 
-class OrderAdapter: ListAdapter<Order, OrderAdapter.OrderViewHolder>(OrderDiffUtil) {
+class OrderAdapter(val clickListener: OnClickListener): ListAdapter<Order, OrderAdapter.OrderViewHolder>(OrderDiffUtil) {
 
     private var unfilteredList = listOf<Order>()
     inner class OrderViewHolder(private val binding: OrderItemBinding): RecyclerView.ViewHolder(binding.root) {
@@ -29,6 +29,9 @@ class OrderAdapter: ListAdapter<Order, OrderAdapter.OrderViewHolder>(OrderDiffUt
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
+        holder.itemView.setOnClickListener {
+            clickListener.onClick(item)
+        }
     }
 
     fun modifyList(list : List<Order>) {
@@ -59,7 +62,10 @@ class OrderAdapter: ListAdapter<Order, OrderAdapter.OrderViewHolder>(OrderDiffUt
         override fun areContentsTheSame(oldItem: Order, newItem: Order): Boolean {
             return newItem.id == oldItem.id
         }
+    }
 
+    class OnClickListener(val clickListener: (order : Order) -> Unit) {
+        fun onClick(order: Order) = clickListener(order)
     }
 
 }

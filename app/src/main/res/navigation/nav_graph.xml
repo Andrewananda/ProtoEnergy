@@ -12,7 +12,10 @@
         tools:layout="@layout/fragment_orders" >
         <action
             android:id="@+id/action_ordersFragment_to_orderDetailFragment"
-            app:destination="@id/orderDetailFragment" />
+            app:destination="@id/orderDetailFragment"
+            android:name="order"
+            app:argType="com.devstart.protoenergy.orders.model.Order"
+            />
     </fragment>
     <fragment
         android:id="@+id/orderDetailFragment"

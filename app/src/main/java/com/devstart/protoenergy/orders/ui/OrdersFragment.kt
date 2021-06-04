@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.devstart.protoenergy.R
 import com.devstart.protoenergy.databinding.FragmentOrdersBinding
 import com.devstart.protoenergy.network.ApiResponse
@@ -30,7 +31,9 @@ class OrdersFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(layoutInflater,R.layout.fragment_orders, container, false)
         fetchData()
-        orderAdapter = OrderAdapter()
+        orderAdapter = OrderAdapter(OrderAdapter.OnClickListener {
+            navigateToOrderDetail(it)
+        })
         binding.recyclerview.adapter = orderAdapter
         return binding.root
     }
@@ -92,5 +95,9 @@ class OrdersFragment : Fragment() {
 
     private fun logFailiure(failure: Throwable) {
         Log.i("Failure", failure.localizedMessage)
+    }
+
+    private fun navigateToOrderDetail(order: Order) {
+        findNavController().navigate(R.id.action_ordersFragment_to_orderDetailFragment)
     }
 }

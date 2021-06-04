@@ -1,22 +1,28 @@
 package com.devstart.protoenergy.orders.model
 
+import android.os.Parcelable
+import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
+
+
+@Parcelize
 data class Order(
-    val customerCode: String,
-    val customerName: String,
-    val deliveryPointCode: String,
-    val deliveryPointName: String,
-    val salesAreaCode: String,
-    val salesAreaName: String,
-    val batchNumber: String,
-    val remarks: String?,
-    val status: String,
-    val orderTotal: Double,
-    val userPhoneNumber0: String,
-    val id: String,
-    val dateCreated: String,
-    val createdBy: String,
-    val creatorUserEmail: String,
-    val dateModified: String?,
-    val modifiedBy: String?,
-    val modifierUserEmail: String?
-)
+    @Json(name = "customerCode") val customerCode: String,
+    @Json(name = "customerName") val customerName: String,
+    @Json(name = "deliveryPointCode") val deliveryPointCode: String,
+    @Json(name = "deliveryPointName") val deliveryPointName: String,
+    @Json(name = "salesAreaCode") val salesAreaCode: String,
+    @Json(name = "salesAreaName") val salesAreaName: String,
+    @Json(name = "batchNumber") val batchNumber: String,
+    @Json(name = "remarks") val remarks: String?,
+    @Json(name = "status") val status: String,
+    @Json(name = "orderTotal") val orderTotal: Double,
+    @Json(name = "userPhoneNumber0") val userPhoneNumber0: String,
+    @Json(name = "id") val id: String,
+    @Json(name = "dateCreated") val dateCreated: String,
+    @Json(name = "createdBy") val createdBy: String,
+    @Json(name = "creatorUserEmail") val creatorUserEmail: String,
+    @Json(name = "dateModified") val dateModified: String?,
+    @Json(name = "modifiedBy") val modifiedBy: String?,
+    @Json(name = "modifierUserEmail") val modifierUserEmail: String?
+): Parcelable
