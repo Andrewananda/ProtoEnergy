@@ -10,16 +10,26 @@
         android:name="com.devstart.protoenergy.orders.ui.OrdersFragment"
         android:label="fragment_orders"
         tools:layout="@layout/fragment_orders" >
-        <action
-            android:id="@+id/action_ordersFragment_to_orderDetailFragment"
-            app:destination="@id/orderDetailFragment"
-            android:name="order"
+
+            <action
+                android:id="@+id/action_ordersFragment_to_orderDetailFragment"
+                app:destination="@id/orderDetailFragment"
+                />
+        <argument
+            android:name="orderDetails"
             app:argType="com.devstart.protoenergy.orders.model.Order"
-            />
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
-    <fragment
+    <dialog
         android:id="@+id/orderDetailFragment"
         android:name="com.devstart.protoenergy.orders.ui.OrderDetailFragment"
         android:label="fragment_order_detail"
-        tools:layout="@layout/fragment_order_detail" />
+        tools:layout="@layout/fragment_order_detail" >
+        <argument
+            android:name="orderDetails"
+            app:argType="com.devstart.protoenergy.orders.model.Order"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </dialog>
 </navigation>

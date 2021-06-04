@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.devstart.protoenergy.R
 import com.devstart.protoenergy.databinding.FragmentOrdersBinding
-import com.devstart.protoenergy.network.ApiResponse
 import com.devstart.protoenergy.network.Failure
 import com.devstart.protoenergy.network.Success
 import com.devstart.protoenergy.orders.model.Order
@@ -97,7 +95,8 @@ class OrdersFragment : Fragment() {
         Log.i("Failure", failure.localizedMessage)
     }
 
-    private fun navigateToOrderDetail(order: Order) {
-        findNavController().navigate(R.id.action_ordersFragment_to_orderDetailFragment)
+    private fun navigateToOrderDetail(orderDetails: Order) {
+        val direction = OrdersFragmentDirections.actionOrdersFragmentToOrderDetailFragment(orderDetails)
+        findNavController().navigate(direction)
     }
 }
