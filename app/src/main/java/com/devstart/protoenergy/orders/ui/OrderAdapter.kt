@@ -17,7 +17,7 @@ class OrderAdapter(private val clickListener: OnClickListener): ListAdapter<Orde
         fun bind(item: Order) {
             binding.name.text = item.customerName
             binding.location.text = item.deliveryPointName
-            binding.date.text = DateConverter.convertData(item.dateCreated).toString()
+            binding.date.text = DateConverter.convertData(item.dateCreated)
             binding.status.text = item.status
         }
     }
@@ -44,9 +44,12 @@ class OrderAdapter(private val clickListener: OnClickListener): ListAdapter<Orde
 
         if(!query.isNullOrEmpty()) {
             list.addAll(unfilteredList.filter {
-                it.status.toLowerCase(Locale.getDefault()).contains(query.toString().toLowerCase(Locale.getDefault())) ||
-                it.customerName.toLowerCase(Locale.getDefault()).contains(query.toString().toLowerCase(Locale.getDefault())) ||
-                it.deliveryPointName.toLowerCase(Locale.getDefault()).contains(query.toString().toLowerCase(Locale.getDefault()))
+                it.status.lowercase(Locale.getDefault()).contains(query.toString()
+                    .lowercase(Locale.getDefault())) ||
+                it.customerName.lowercase(Locale.getDefault()).contains(query.toString()
+                    .lowercase(Locale.getDefault())) ||
+                it.deliveryPointName.lowercase(Locale.getDefault()).contains(query.toString()
+                    .lowercase(Locale.getDefault()))
             })
         } else {
             list.addAll(unfilteredList)

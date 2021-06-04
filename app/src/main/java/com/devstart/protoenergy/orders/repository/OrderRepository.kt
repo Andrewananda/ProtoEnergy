@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class OrderRepository @Inject constructor(private val apiService: ApiService) {
 
-    suspend fun getOrders() : ApiResponse {
+     suspend fun getOrders() : ApiResponse {
         return try {
             val request = apiService.getOrdersAsync().await()
             Success(request)
@@ -14,5 +14,4 @@ class OrderRepository @Inject constructor(private val apiService: ApiService) {
             Failure(t)
         }
     }
-
 }

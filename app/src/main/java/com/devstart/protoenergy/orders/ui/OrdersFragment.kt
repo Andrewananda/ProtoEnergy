@@ -9,6 +9,7 @@ import android.view.*
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.devstart.protoenergy.R
@@ -20,28 +21,36 @@ import com.devstart.protoenergy.orders.viewModel.OrderViewModel
 import com.devstart.protoenergy.util.hide
 import com.devstart.protoenergy.util.show
 import com.devstart.protoenergy.util.snack
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_orders.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class OrdersFragment : Fragment() {
-    @Inject
-    lateinit var viewModel: OrderViewModel
+
+     val viewModel: OrderViewModel by viewModels()
 
     private lateinit var binding: FragmentOrdersBinding
     private lateinit var orderAdapter: OrderAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(layoutInflater,R.layout.fragment_orders, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
         val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
 
         if(isConnected) {
-           fetchData()
+            fetchData()
         }else {
             progressBar?.hide()
             view?.snack("Check Your internet connectivity")
@@ -50,7 +59,6 @@ class OrdersFragment : Fragment() {
             navigateToOrderDetail(it)
         })
         binding.recyclerview.adapter = orderAdapter
-        return binding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,7 +91,7 @@ class OrdersFragment : Fragment() {
             viewModel.fetchOrders().collect { res ->
                 when(res) {
                     is Failure -> {
-                        logFailiure(res.throwable)
+                        logFailure(res.throwable)
                     }
                     is Success<*> -> {
                         bindView(res.data as List<Order>)
@@ -100,7 +108,7 @@ class OrdersFragment : Fragment() {
         recyclerview.show()
     }
 
-    private fun logFailiure(failure: Throwable) {
+    private fun logFailure(failure: Throwable) {
         progressBar.hide()
         view?.snack("An error occurred while trying to fetch Orders")
         Log.i("Failure", failure.localizedMessage)
@@ -110,4 +118,6 @@ class OrdersFragment : Fragment() {
         val direction = OrdersFragmentDirections.actionOrdersFragmentToOrderDetailFragment(orderDetails)
         findNavController().navigate(direction)
     }
+
+
 }
