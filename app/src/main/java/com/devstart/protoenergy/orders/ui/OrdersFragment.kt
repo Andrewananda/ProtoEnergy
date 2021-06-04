@@ -43,7 +43,7 @@ class OrdersFragment : Fragment() {
         if(isConnected) {
            fetchData()
         }else {
-            progressBar.hide()
+            progressBar?.hide()
             view?.snack("Check Your internet connectivity")
         }
         orderAdapter = OrderAdapter(OrderAdapter.OnClickListener {
