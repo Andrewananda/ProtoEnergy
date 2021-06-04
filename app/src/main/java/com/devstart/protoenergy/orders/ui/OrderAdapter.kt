@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.devstart.protoenergy.databinding.OrderItemBinding
 import com.devstart.protoenergy.orders.model.Order
 import com.devstart.protoenergy.util.DateConverter
+import java.util.*
 
 class OrderAdapter: ListAdapter<Order, OrderAdapter.OrderViewHolder>(OrderDiffUtil) {
 
+    private var unfilteredList = listOf<Order>()
     inner class OrderViewHolder(private val binding: OrderItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Order) {
             binding.name.text = item.customerName
@@ -27,6 +29,26 @@ class OrderAdapter: ListAdapter<Order, OrderAdapter.OrderViewHolder>(OrderDiffUt
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
+    }
+
+    fun modifyList(list : List<Order>) {
+        unfilteredList = list
+        submitList(list)
+    }
+
+    fun filter(query: CharSequence?) {
+        val list = mutableListOf<Order>()
+
+        // perform the data filtering
+        if(!query.isNullOrEmpty()) {
+            list.addAll(unfilteredList.filter {
+                it.status.toLowerCase(Locale.getDefault()).contains(query.toString().toLowerCase(Locale.getDefault())) ||
+                        it.customerName.toLowerCase(Locale.getDefault()).contains(query.toString().toLowerCase(Locale.getDefault())) })
+        } else {
+            list.addAll(unfilteredList)
+        }
+
+        submitList(list)
     }
 
     object OrderDiffUtil: DiffUtil.ItemCallback<Order>() {
