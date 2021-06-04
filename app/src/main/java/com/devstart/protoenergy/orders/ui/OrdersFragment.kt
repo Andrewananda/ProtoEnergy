@@ -26,9 +26,7 @@ class OrdersFragment : Fragment() {
 
     private lateinit var binding: FragmentOrdersBinding
     private lateinit var orderAdapter: OrderAdapter
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(layoutInflater,R.layout.fragment_orders, container, false)
         fetchData()
@@ -78,8 +76,18 @@ class OrdersFragment : Fragment() {
     }
 
     private fun bindView(response: List<Order>) {
+        hideProgressBar()
         orderAdapter.submitList(response)
         orderAdapter.modifyList(response)
+        showData()
+    }
+
+    private fun showData() {
+        binding.recyclerview.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressBar() {
+        binding.progressBar.visibility = View.GONE
     }
 
     private fun logFailiure(failure: Throwable) {

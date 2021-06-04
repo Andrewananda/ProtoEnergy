@@ -17,7 +17,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layoutManager="LinearLayoutManager"
             tools:itemCount="5"
+            android:visibility="gone"
             tools:listitem="@layout/order_item"
+            />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="181dp"
+            tools:layout_editor_absoluteY="299dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
