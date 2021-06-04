@@ -31,6 +31,7 @@
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="onClick"
         style="@style/floating_btn"
         android:src="@drawable/phone_icon"
         app:layout_constraintBottom_toBottomOf="@+id/materialTextView8"
