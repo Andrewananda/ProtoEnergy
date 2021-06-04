@@ -1,5 +1,8 @@
 package com.devstart.protoenergy.orders.ui
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -28,7 +31,15 @@ class OrdersFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(layoutInflater,R.layout.fragment_orders, container, false)
-        fetchData()
+        val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+        val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
+
+        if(isConnected) {
+           fetchData()
+        }else {
+            Log.e("INTERNETCONNECTION", "Kindly check your internet Connection")
+        }
         orderAdapter = OrderAdapter(OrderAdapter.OnClickListener {
             navigateToOrderDetail(it)
         })
