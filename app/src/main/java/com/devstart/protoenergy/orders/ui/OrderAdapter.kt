@@ -46,7 +46,9 @@ class OrderAdapter(val clickListener: OnClickListener): ListAdapter<Order, Order
         if(!query.isNullOrEmpty()) {
             list.addAll(unfilteredList.filter {
                 it.status.toLowerCase(Locale.getDefault()).contains(query.toString().toLowerCase(Locale.getDefault())) ||
-                        it.customerName.toLowerCase(Locale.getDefault()).contains(query.toString().toLowerCase(Locale.getDefault())) })
+                it.customerName.toLowerCase(Locale.getDefault()).contains(query.toString().toLowerCase(Locale.getDefault())) ||
+                it.deliveryPointName.toLowerCase(Locale.getDefault()).contains(query.toString().toLowerCase(Locale.getDefault()))
+            })
         } else {
             list.addAll(unfilteredList)
         }
