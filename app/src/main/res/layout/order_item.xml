@@ -1,64 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    tool:cardCornerRadius="4dp"
+    tool:cardElevation="4dp">
 
-    >
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        tool:cardCornerRadius="4dp"
-        tool:cardElevation="4dp">
+        android:padding="12dp"
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:padding="12dp"
-            android:layout_height="match_parent">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Athi River, kenya"
+            android:textColor="@color/black"
+            style="@style/TextAppearance.AppCompat.Medium"
+            tool:layout_constraintStart_toStartOf="parent"
+            tool:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Athi River, kenya"
-                android:textColor="@color/black"
-                style="@style/TextAppearance.AppCompat.Medium"
-                tool:layout_constraintStart_toStartOf="parent"
-                tool:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Jan doe"
+            android:layout_marginTop="8dp"
+            tool:layout_constraintStart_toStartOf="parent"
+            tool:layout_constraintTop_toBottomOf="@+id/location" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Jan doe"
-                android:layout_marginTop="8dp"
-                tool:layout_constraintStart_toStartOf="parent"
-                tool:layout_constraintTop_toBottomOf="@+id/location" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="5dp"
+            tool:layout_constraintBottom_toBottomOf="parent"
+            tool:layout_constraintStart_toStartOf="parent"
+            tool:layout_constraintTop_toBottomOf="@+id/name"
+            tools:text="canceled" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="5dp"
-                tool:layout_constraintBottom_toBottomOf="parent"
-                tool:layout_constraintStart_toStartOf="parent"
-                tool:layout_constraintTop_toBottomOf="@+id/name"
-                tools:text="canceled" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="31-05-2021 at 19:37 pm"
+            android:textColor="@color/black"
+            tool:layout_constraintBottom_toBottomOf="@+id/location"
+            tool:layout_constraintEnd_toEndOf="parent"
+            tool:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="31-05-2021 at 19:37 pm"
-                android:textColor="@color/black"
-                tool:layout_constraintBottom_toBottomOf="@+id/location"
-                tool:layout_constraintEnd_toEndOf="parent"
-                tool:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-</layout>
+</com.google.android.material.card.MaterialCardView>

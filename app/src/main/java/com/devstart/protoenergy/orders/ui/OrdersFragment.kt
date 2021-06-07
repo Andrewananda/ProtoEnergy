@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -23,11 +22,7 @@ import com.devstart.protoenergy.util.show
 import com.devstart.protoenergy.util.snack
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_orders.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class OrdersFragment : Fragment() {
@@ -38,7 +33,7 @@ class OrdersFragment : Fragment() {
     private lateinit var orderAdapter: OrderAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(layoutInflater,R.layout.fragment_orders, container, false)
+        binding = FragmentOrdersBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
