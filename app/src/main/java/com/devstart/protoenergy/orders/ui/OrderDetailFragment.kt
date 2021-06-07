@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import com.devstart.protoenergy.R
 import com.devstart.protoenergy.databinding.FragmentOrderDetailBinding
 import com.devstart.protoenergy.orders.model.Order
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
