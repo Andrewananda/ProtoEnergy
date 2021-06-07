@@ -19,7 +19,7 @@ class OrderDetailFragment : BottomSheetDialogFragment( ) {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_order_detail, container, false)
+        binding = FragmentOrderDetailBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -27,8 +27,8 @@ class OrderDetailFragment : BottomSheetDialogFragment( ) {
         super.onViewCreated(view, savedInstanceState)
         val bundle = arguments
         val orderObject = bundle?.let { OrderDetailFragmentArgs.fromBundle(it) }
-        binding.order = orderObject?.orderDetails
-
+        val order = orderObject?.orderDetails
+        bindView(order)
         binding.floatingActionButton.setOnClickListener {
             val value: Order? = orderObject?.orderDetails
 
@@ -37,5 +37,13 @@ class OrderDetailFragment : BottomSheetDialogFragment( ) {
                 startActivity(intent)
             }
         }
+    }
+
+    private fun bindView(item: Order?) {
+        binding.customerName.text = item?.customerName
+        binding.batchNumber.text = item?.batchNumber
+        binding.salesAreaName.text = item?.salesAreaName
+        binding.status.text = item?.status
+        binding.orderTotal.text =  item?.orderTotal.toString()
     }
 }

@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
-    tools:context=".orders.ui.OrderDetailFragment">
-    <data>
-        <variable
-            name="order"
-            type="com.devstart.protoenergy.orders.model.Order" />
-    </data>
-<androidx.constraintlayout.widget.ConstraintLayout
+    tools:context=".orders.ui.OrderDetailFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="12dp">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/detailedDescription"
+        android:id="@+id/customerName"
         style="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/colorPrimary"
         android:layout_width="wrap_content"
@@ -24,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tool:layout_constraintStart_toStartOf="parent"
         tool:layout_constraintTop_toBottomOf="@+id/materialTextView3"
-        tool:text="@{order.customerName}" />
+        tool:text="customerName" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -34,9 +29,10 @@
         android:onClick="onClick"
         style="@style/floating_btn"
         android:src="@drawable/phone_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/materialTextView8"
+        app:layout_constraintBottom_toBottomOf="@+id/salesAreaName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="OnClick" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/materialTextView4"
@@ -47,26 +43,26 @@
         android:textColor="@color/colorPrimary"
         android:text="Batch Number :"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialTextView8" />
+        app:layout_constraintTop_toBottomOf="@+id/salesAreaName" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView7"
+        android:id="@+id/batchNumber"
         style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialTextView4"
-        tool:text="@{order.batchNumber}" />
+        tool:text="batch Number" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView8"
+        android:id="@+id/salesAreaName"
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/dark_gray"
-        android:text="@{order.salesAreaName}"
+        android:text="Sales Area"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailedDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/customerName" />
 
 
     <com.google.android.material.textview.MaterialTextView
@@ -77,15 +73,15 @@
         android:text="Order Total"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialTextView10" />
+        app:layout_constraintTop_toBottomOf="@+id/status" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView9"
+        android:id="@+id/orderTotal"
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="@{`Kes ` + Double.toString(order.orderTotal)}"
+        android:text="Kes"
         app:layout_constraintBottom_toBottomOf="@+id/materialTextView6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/materialTextView6"
@@ -93,14 +89,13 @@
 
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView10"
+        android:id="@+id/status"
         android:layout_marginTop="12dp"
         style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{order.status}"
+        android:text="status"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialTextView7" />
+        app:layout_constraintTop_toBottomOf="@+id/batchNumber" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
