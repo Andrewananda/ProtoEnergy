@@ -5,6 +5,6 @@
     <string name="pending_status">Pending</string>
     <string name="canceled_status">Canceled</string>
     <string name="completed_status">Completed</string>
-    <string name="payed_status">Payed</string>
+    <string name="paid_status">Paid</string>
     <string name="all_status">All</string>
 </resources>

@@ -21,7 +21,7 @@
         />
     <item
         android:id="@+id/payed"
-        android:title="@string/payed_status"
+        android:title="@string/paid_status"
         />
 
 </menu>
