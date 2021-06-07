@@ -45,10 +45,6 @@ class OrderAdapter(private val clickListener: OnClickListener): ListAdapter<Orde
         if(!query.isNullOrEmpty()) {
             list.addAll(unfilteredList.filter {
                 it.status.lowercase(Locale.getDefault()).contains(query.toString()
-                    .lowercase(Locale.getDefault())) ||
-                it.customerName.lowercase(Locale.getDefault()).contains(query.toString()
-                    .lowercase(Locale.getDefault())) ||
-                it.deliveryPointName.lowercase(Locale.getDefault()).contains(query.toString()
                     .lowercase(Locale.getDefault()))
             })
         } else {
