@@ -3,13 +3,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
-
-    <item android:id="@+id/search_bar"
-        android:icon="@drawable/ic_baseline_search_24"
-        android:title="Search"
-        app:showAsAction="ifRoom"
-        app:actionViewClass="android.widget.SearchView">
-
-    </item>
+    <item
+        android:id="@+id/all"
+        android:title="@string/all_status"
+        />
+    <item
+        android:id="@+id/pending"
+        android:title="@string/pending_status"
+        />
+    <item
+        android:id="@+id/canceled"
+        android:title="@string/canceled_status"
+        />
+    <item
+        android:id="@+id/completed"
+        android:title="@string/completed_status"
+        />
+    <item
+        android:id="@+id/payed"
+        android:title="@string/payed_status"
+        />
 
 </menu>

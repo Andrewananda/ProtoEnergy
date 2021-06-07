@@ -6,7 +6,6 @@ import android.net.NetworkInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -62,23 +61,22 @@ class OrdersFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-         inflater.inflate(R.menu.menu, menu)
-        val search = menu?.findItem(R.id.search_bar)
-        val searchView = search?.actionView as SearchView
-        searchView.queryHint = "Search"
+        val minflater: MenuInflater = inflater
+        inflater.inflate(R.menu.menu, menu)
+        super.onCreateOptionsMenu(menu, minflater)
+    }
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(p0: String?): Boolean {
-                return false
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.all -> {
+                orderAdapter.filter("")
             }
-
-            override fun onQueryTextChange(p0: String?): Boolean {
-                orderAdapter.filter(p0)
-                return true
+            else -> {
+                orderAdapter.filter(item.title)
+                super.onOptionsItemSelected(item)
             }
-
-        })
-        super.onCreateOptionsMenu(menu, inflater)
+        }
+        return true
     }
 
     private fun fetchData() {
