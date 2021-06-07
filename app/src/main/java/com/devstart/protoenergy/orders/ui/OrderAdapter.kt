@@ -39,7 +39,7 @@ class OrderAdapter(private val clickListener: OnClickListener): ListAdapter<Orde
         submitList(list)
     }
 
-    fun filter(query: CharSequence?) {
+    fun filter(query: CharSequence?){
         val list = mutableListOf<Order>()
 
         if(!query.isNullOrEmpty()) {

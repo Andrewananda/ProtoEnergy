@@ -11,6 +11,7 @@
         <item name="colorOnSecondary">@color/colorPrimary</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="actionOverflowButtonStyle">@style/MyHumbergerIcon</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -21,4 +22,8 @@
         <item name="backgroundTint">@color/white</item>
     </style>
 
+
+    <style name="MyHumbergerIcon" parent="android:Widget.Holo.ActionButton.Overflow">
+        <item name="android:src">@drawable/filter_list</item>
+    </style>
 </resources>

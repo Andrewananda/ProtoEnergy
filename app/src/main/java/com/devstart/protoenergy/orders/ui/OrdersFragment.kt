@@ -72,7 +72,7 @@ class OrdersFragment : Fragment() {
                 orderAdapter.filter("")
             }
             else -> {
-                orderAdapter.filter(item.title)
+                 orderAdapter.filter(item.title)
                 super.onOptionsItemSelected(item)
             }
         }
@@ -96,7 +96,6 @@ class OrdersFragment : Fragment() {
 
     private fun bindView(response: List<Order>) {
         progressBar.hide()
-        orderAdapter.submitList(response)
         orderAdapter.modifyList(response)
         recyclerview.show()
     }
