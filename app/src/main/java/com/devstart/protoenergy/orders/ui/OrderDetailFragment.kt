@@ -1,5 +1,6 @@
 package com.devstart.protoenergy.orders.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -37,11 +38,12 @@ class OrderDetailFragment : BottomSheetDialogFragment( ) {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun bindView(item: Order?) {
         binding.customerName.text = item?.customerName
         binding.batchNumber.text = item?.batchNumber
         binding.salesAreaName.text = item?.salesAreaName
         binding.status.text = item?.status
-        binding.orderTotal.text =  item?.orderTotal.toString()
+        binding.orderTotal.text =  "Kes ${item?.orderTotal.toString()}"
     }
 }
