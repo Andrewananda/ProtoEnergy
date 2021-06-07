@@ -19,6 +19,5 @@ fun View.show(){
 
 fun numberFormat(number: Double): String {
     val formatter: NumberFormat = DecimalFormat("#,###")
-    val myNumber = number
-    return formatter.format(myNumber)
+    return formatter.format(number)
 }
