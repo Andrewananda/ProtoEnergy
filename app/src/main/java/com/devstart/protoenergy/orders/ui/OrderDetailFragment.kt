@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.devstart.protoenergy.databinding.FragmentOrderDetailBinding
 import com.devstart.protoenergy.orders.model.Order
+import com.devstart.protoenergy.util.numberFormat
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class OrderDetailFragment : BottomSheetDialogFragment( ) {
@@ -44,6 +45,6 @@ class OrderDetailFragment : BottomSheetDialogFragment( ) {
         binding.batchNumber.text = item?.batchNumber
         binding.salesAreaName.text = item?.salesAreaName
         binding.status.text = item?.status
-        binding.orderTotal.text =  "Kes ${item?.orderTotal.toString()}"
+        binding.orderTotal.text =  "Kes ${item?.orderTotal?.let { numberFormat(it) }}"
     }
 }
