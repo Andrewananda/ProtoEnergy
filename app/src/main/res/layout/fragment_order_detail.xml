@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:textColor="@color/colorPrimary"
-        android:text="Batch Number :"
+        android:text="@string/batch_number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/salesAreaName" />
 
@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/dark_gray"
-        android:text="Sales Area"
+        android:text="@string/sales_area"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/customerName" />
 
@@ -70,7 +70,7 @@
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Order Total"
+        android:text="@string/order_total"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/status" />
@@ -81,7 +81,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="Kes"
+        android:text="@string/kes"
         app:layout_constraintBottom_toBottomOf="@+id/materialTextView6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/materialTextView6"
@@ -94,7 +94,7 @@
         style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="status"
+        android:text="@string/status"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/batchNumber" />
 
