@@ -47,12 +47,12 @@ class OrdersFragment : Fragment() {
             fetchData()
         }else {
             progressBar?.hide()
-            textHolder.text = R.string.internet_connectivity_retry.toString()
+            textHolder.text = getString(R.string.internet_connectivity_retry)
             textHolder.setOnClickListener {
                 fetchData()
             }
             textHolder.show()
-            view?.snack(R.string.internet_connectivity.toString())
+            view?.snack(getString(R.string.internet_connectivity))
         }
         orderAdapter = OrderAdapter(OrderAdapter.OnClickListener {
             navigateToOrderDetail(it)
@@ -109,7 +109,7 @@ class OrdersFragment : Fragment() {
 
     private fun logFailure(failure: Throwable) {
         progressBar.hide()
-        textHolder.text = R.string.fetch_error.toString()
+        textHolder.text = getString(R.string.fetch_error)
         textHolder.show()
         textHolder.setOnClickListener {
             fetchData()
