@@ -114,7 +114,7 @@ class OrdersFragment : Fragment() {
         textHolder.setOnClickListener {
             fetchData()
         }
-        view?.snack(R.string.fetch_error.toString())
+        view?.snack(getString(R.string.fetch_error))
         Log.i("Failure", failure.localizedMessage)
     }
 
