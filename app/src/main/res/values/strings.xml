@@ -7,7 +7,7 @@
     <string name="completed_status">Completed</string>
     <string name="paid_status">Paid</string>
     <string name="all_status">All</string>
-    <string name="fetch_error">An error occurred while trying to fetch Orders</string>
+    <string name="fetch_error">An error occurred while trying to fetch Orders, Click To Retry</string>
     <string name="internet_connectivity_retry">Check Your internet connectivity, Click To Retry</string>
     <string name="internet_connectivity">Check Your internet connectivity</string>
     <string name="batch_number">Batch Number :</string>
