@@ -47,12 +47,12 @@ class OrdersFragment : Fragment() {
             fetchData()
         }else {
             progressBar?.hide()
-            textHolder.text = "Check Your internet connectivity, Click To Retry"
+            textHolder.text = R.string.internet_connectivity_retry.toString()
             textHolder.setOnClickListener {
                 fetchData()
             }
             textHolder.show()
-            view?.snack("Check Your internet connectivity")
+            view?.snack(R.string.internet_connectivity.toString())
         }
         orderAdapter = OrderAdapter(OrderAdapter.OnClickListener {
             navigateToOrderDetail(it)
@@ -109,12 +109,12 @@ class OrdersFragment : Fragment() {
 
     private fun logFailure(failure: Throwable) {
         progressBar.hide()
-        textHolder.text = "An error occurred while trying to fetch Orders"
+        textHolder.text = R.string.fetch_error.toString()
         textHolder.show()
         textHolder.setOnClickListener {
             fetchData()
         }
-        view?.snack("An error occurred while trying to fetch Orders")
+        view?.snack(R.string.fetch_error.toString())
         Log.i("Failure", failure.localizedMessage)
     }
 
