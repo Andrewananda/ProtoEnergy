@@ -21,7 +21,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/noOrderFoundBtn"
+        android:id="@+id/textHolder"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="0dp"
         android:visibility="gone"

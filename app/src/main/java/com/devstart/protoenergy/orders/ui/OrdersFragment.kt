@@ -47,6 +47,11 @@ class OrdersFragment : Fragment() {
             fetchData()
         }else {
             progressBar?.hide()
+            textHolder.text = "Check Your internet connectivity, Click To Retry"
+            textHolder.setOnClickListener {
+                fetchData()
+            }
+            textHolder.show()
             view?.snack("Check Your internet connectivity")
         }
         orderAdapter = OrderAdapter(OrderAdapter.OnClickListener {
@@ -80,6 +85,8 @@ class OrdersFragment : Fragment() {
     }
 
     private fun fetchData() {
+        progressBar.show()
+        textHolder.hide()
         lifecycleScope.launchWhenCreated {
             viewModel.fetchOrders().collect { res ->
                 when(res) {
@@ -102,6 +109,11 @@ class OrdersFragment : Fragment() {
 
     private fun logFailure(failure: Throwable) {
         progressBar.hide()
+        textHolder.text = "An error occurred while trying to fetch Orders"
+        textHolder.show()
+        textHolder.setOnClickListener {
+            fetchData()
+        }
         view?.snack("An error occurred while trying to fetch Orders")
         Log.i("Failure", failure.localizedMessage)
     }
